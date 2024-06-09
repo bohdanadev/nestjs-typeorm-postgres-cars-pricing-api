@@ -1,5 +1,4 @@
 import { MiddlewareConsumer, Module, ValidationPipe } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
@@ -23,7 +22,7 @@ const cookieSession = require('cookie-session');
           type: 'sqlite',
           database: config.get<string>('DB_NAME'),
           synchronize: true,
-          entities: [User, Report],
+          entities: [__dirname + '/**/*.entity{.ts,.js}'],
         };
       },
     }),
@@ -36,13 +35,13 @@ const cookieSession = require('cookie-session');
     UsersModule,
     ReportsModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
     AppService,
     {
       provide: APP_PIPE,
       useValue: new ValidationPipe({
-        whitelist: true,
+      whitelist: true,
       }),
     },
   ],
@@ -52,7 +51,7 @@ export class AppModule {
     consumer
       .apply(
         cookieSession({
-          keys: ['asdfasfd'],
+          keys: [process.env.COOKIE_KEY],
         }),
       )
       .forRoutes('*');
