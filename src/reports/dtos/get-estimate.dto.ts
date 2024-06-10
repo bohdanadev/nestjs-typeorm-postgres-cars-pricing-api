@@ -7,7 +7,7 @@ import {
     IsLatitude,
   } from 'class-validator';
   import { Transform } from 'class-transformer';
-import { toFloat, toNumber, TransformWith } from 'src/transformers/transformer';
+import { toFloat, toNumber, TransformWith } from '../../transformers/transformer';
   
   export class GetEstimateDto {
     @IsString()
