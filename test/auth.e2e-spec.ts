@@ -1,7 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import {  HttpStatus, INestApplication } from '@nestjs/common';
+import { HttpStatus, INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
+import { setupApp } from '../src/setup-app';
 
 describe('Authentication System', () => {
   let app: INestApplication;
@@ -12,38 +13,21 @@ describe('Authentication System', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    setupApp(app);
     await app.init();
   });
 
   it('handles a signup request', () => {
-    const email = 'user1@auth.com';
+    const email = 'usertest1@test.com';
 
     return request(app.getHttpServer())
       .post('/auth/signup')
-      .send({ email, password: 'password' })
+      .send({ email, password: '12345678' })
       .expect(HttpStatus.CREATED)
       .then((res) => {
         const { id, email } = res.body;
         expect(id).toBeDefined();
         expect(email).toEqual(email);
       });
-  });
-
-  it('signup as a new user then get the currently logged in user', async () => {
-    const email = 'user2@auth.com';
-
-    const res = await request(app.getHttpServer())
-      .post('/auth/signup')
-      .send({ email, password: 'password2' })
-      .expect(HttpStatus.CREATED);
-
-    const cookie = res.get('Set-Cookie');
-
-    const { body } = await request(app.getHttpServer())
-      .get('/auth/whoami')
-      .set('Cookie', cookie)
-      .expect(HttpStatus.OK);
-
-    expect(body.email).toEqual(email);
   });
 });

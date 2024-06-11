@@ -1,6 +1,8 @@
 .env.development
 .env.test
 
+requests.http
+
 # compiled output
 /dist
 /node_modules
