@@ -111,4 +111,5 @@ npm run test:e2e
 ```
 
 ### API Documentation
-The REST API documentation is available at http://localhost:3000/docs. It provides detailed information on the available endpoints, request/response structures, and authentication methods.
+The REST API documentation is available at http://localhost:3000/docs
+It provides detailed information on the available endpoints, request/response structures, and authentication methods.
