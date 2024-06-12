@@ -1,4 +1,4 @@
-# NESTJS-POSTGRES-TYPEORM USED CAR PRICING API
+# NESTJS-TYPEORM-POSTGRES CARS PRICING API
 This RESTful API is developed with NestJS, TypeORM, and PostgreSQL. User authentication is handled through cookie sessions.
 
 The API facilitates managing prices for pre-owned vehicles. Users have the ability to submit reports on sold cars, and the application can then calculate an estimated average price for a vehicle based on these submitted reports
@@ -39,9 +39,8 @@ These instructions will get you a copy of the project up and running on your loc
 Clone the repository:
 
 ```bash
-git clone https://github.com/bohdanadev/nestjs-postgres-typeorm-used-car-pricing-api
-
-cd nestjs-postgres-typeorm-used-car-pricing-api
+git clone https://github.com/bohdanadev/nestjs-typeorm-postgres-cars-pricing-api.git
+cd nestjs-typeorm-postgres-cars-pricing-api
 ```
 
 Install the dependencies:
